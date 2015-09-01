@@ -1,6 +1,6 @@
 package com.ryan.gengine.Version1.display;
 
-import com.ryan.gengine.Version1.service.ClickableTile;
+import com.ryan.gengine.Version1.service.Clickable;
 import com.ryan.gengine.Version1.service.GTile;
 import com.ryan.gengine.Version1.service.singles.HoverableTile;
 
@@ -14,7 +14,7 @@ import java.awt.*;
  *         This software is the confidential and proprietary information
  *         of HEB
  */
-class GTileButton extends GTile implements ClickableTile, HoverableTile {
+class GTileButton extends GTile implements Clickable, HoverableTile {
     private boolean raised = true;
     private Color upColor = Color.lightGray;
     private Color downColor = upColor.darker();

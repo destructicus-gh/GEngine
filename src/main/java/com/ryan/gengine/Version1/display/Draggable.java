@@ -8,7 +8,7 @@ package com.ryan.gengine.Version1.display;
  *         This software is the confidential and proprietary information
  *         of HEB
  */
-public interface DraggableElement {
+public interface Draggable {
     void dragStart();
     void dragging();
     void dragStop();

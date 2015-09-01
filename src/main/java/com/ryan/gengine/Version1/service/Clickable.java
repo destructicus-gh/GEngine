@@ -8,7 +8,7 @@ package com.ryan.gengine.Version1.service;
  *         This software is the confidential and proprietary information
  *         of HEB
  */
-public interface ClickableTile{
+public interface Clickable {
     void click(boolean leftClick);
     void clickDown();
     void clickUp();

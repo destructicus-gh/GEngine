@@ -27,8 +27,8 @@ public class GridPanel extends GamePanel{
             return;
         }
         if (g != current) {
-            if (current instanceof ClickableTile) {
-                ((ClickableTile) current).clickUp();
+            if (current instanceof Clickable) {
+                ((Clickable) current).clickUp();
             }
             if (current instanceof HoverableTile) {
                 ((HoverableTile) current).hoverOff();
@@ -199,8 +199,8 @@ public class GridPanel extends GamePanel{
     @Override
     public void mouseClicked(MouseEvent e) {
         GTile tile = getContentAtRaw(e.getPoint());
-        if (tile != null && tile instanceof ClickableTile) {
-            ((ClickableTile) tile).click(e.getButton() == 1);
+        if (tile != null && tile instanceof Clickable) {
+            ((Clickable) tile).click(e.getButton() == 1);
         }
         rpaint();
     }
@@ -209,8 +209,8 @@ public class GridPanel extends GamePanel{
     public void mousePressed(MouseEvent e) {
         GTile tile = getContentAtRaw(e.getPoint());
         current = tile;
-        if (tile != null && tile instanceof ClickableTile) {
-            ((ClickableTile) tile).clickDown();
+        if (tile != null && tile instanceof Clickable) {
+            ((Clickable) tile).clickDown();
         }
         rpaint();
     }
@@ -219,12 +219,12 @@ public class GridPanel extends GamePanel{
     public void mouseReleased(MouseEvent e) {
         GTile tile = getContentAtRaw(e.getPoint());
 
-        if (tile != null && tile instanceof ClickableTile) {
+        if (tile != null && tile instanceof Clickable) {
             if (tile == current) {
-                ((ClickableTile) tile).clickUp();
+                ((Clickable) tile).clickUp();
             } else {
-                if (current instanceof ClickableTile) {
-                    ((ClickableTile) current).clickUp();
+                if (current instanceof Clickable) {
+                    ((Clickable) current).clickUp();
                 }
             }
 

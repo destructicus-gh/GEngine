@@ -10,11 +10,12 @@ import java.awt.*;
  *         This software is the confidential and proprietary information
  *         of HEB
  */
-public abstract class FrameContentObject {
+public abstract class FrameContentObject{
     String name;
     Point localPosition = new Point(0,0);
     Dimension bounds;
     Shape shape;
+    public int height;
 
     FrameContentObject(Point p, Shape s){
         this.shape = s;
