@@ -1,0 +1,32 @@
+::rules
+rules:
+	players 2
+
+progression:
+	start, repeat round
+
+player:
+	has hand - standard_deck face_down stack_style
+
+places:
+	each player:
+		free_card compare_card face_up max=1
+		pile battle_pile face_down max=3
+
+::start
+deal evenly - standard_deck -> each player
+
+
+::round
+each player:
+	draw card 1 - hand top -> new free_card compare_card face_up
+
+hold winner - highest_number [each player compare_card]; get player
+
+if winner is tie:
+	each player:
+		draw card 2 - hand top -> new pile battle_pile
+
+else, 
+	give [each player compare_card] -> comparison
+
