@@ -1,0 +1,79 @@
+<gameconfig>
+    <rules>
+        <players>
+            2
+        </players>
+    </rules>
+    <objects>
+        <arena>
+            <nonplayer>
+                <hand>
+                    <viewstate>none</viewstate>
+                    <holding id="deck" init="full">StandardDeck</holding>
+                    <holding id="tempA" init="empty">StandardCardHand</holding>
+                    <holding id="tempB" init="empty">StandardCardHand</holding>
+                </hand>
+            </nonplayer>
+            <genericplayer>
+                <hand>
+                    <viewstate>none</viewstate>
+                    <holding id="hand">StandardCardHand</holding>
+                </hand>
+            </genericplayer>
+        </arena>
+    </objects>
+    <setup>
+        <action>
+            <type>dealAll</type>
+            <on>player-all</on>
+        </action>
+    </setup>
+    <playprogression>
+        <progressionstyle>round</progressionstyle>
+        <onround>
+            <action resultid="draw">
+                <type count="1">hand.draw</type>
+                <on>player-all</on>
+                <do>
+                    <actionid>compare</actionid>
+                    <param type="single">player=player</param>
+                    <param type="list">element=card</param>
+                </do>
+            </action>
+            <action id="compare">
+                <type>compare</type>
+                <on>card-0.object.value</on>
+                <on>card-1.object.value</on>
+                <do compare=">">
+                    <actionid>battle</actionid>
+                    <param type="single">winner=player-0</param>
+                    <param type="single">loser=player-1</param>
+                    <param>element=card</param>
+                </do>
+                <do compare="<">
+                    <actionid>battle</actionid>
+                    <param type="single">winner=player-1</param>
+                    <param type="single">loser=player-0</param>
+                    <param type="list">element=card</param>
+                </do>
+                <do compare="=">
+                    <actionid>war</actionid>
+                    <param type="list">player=player</param>
+                    <param type="list">element=card</param>
+                </do>
+            </action>
+            <action id="battle">
+                <type>giveatob</type>
+                <on>card-all;winner</on>
+            </action>
+            <action id="war">
+                <type count="3">drawatob</type>
+                <on>player-0;tempA</on>
+                <on>player-1;tempB</on>
+                <do>
+                    <actionid>compare</actionid>
+                </do>
+            </action>
+        </onround>
+    </playprogression>
+</gameconfig>
