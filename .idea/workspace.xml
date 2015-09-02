@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9527a743-0948-486d-b084-5297a47db20a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/CenterShape.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/ShapeDrawData.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/UIButton.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ryan/gengine/Version1/display/DraggableDisplayTest.class" afterPath="$PROJECT_DIR$/target/classes/com/ryan/gengine/Version1/display/DraggableDisplayTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ryan/gengine/Version1/display/DraggablePanel.class" afterPath="$PROJECT_DIR$/target/classes/com/ryan/gengine/Version1/display/DraggablePanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ryan/gengine/Version1/display/FrameContentObject.class" afterPath="$PROJECT_DIR$/target/classes/com/ryan/gengine/Version1/display/FrameContentObject.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/Draggable.java" afterPath="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/Draggable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/DraggableDisplayTest.java" afterPath="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/DraggableDisplayTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/FrameContentObject.java" afterPath="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/FrameContentObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/CenterShape.java" afterPath="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/CenterShape.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/ShapeDrawData.java" afterPath="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/ShapeDrawData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GEngine.iws" />
@@ -94,12 +87,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShapeDrawData.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ShapeDrawData.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/ShapeDrawData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
-              <folding />
+            <state vertical-scroll-proportion="0.5643154">
+              <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -122,11 +117,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CenterShape.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CenterShape.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/CenterShape.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38865837">
-              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -138,7 +133,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/FrameContentObject.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="60" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="60" />
+              <caret line="26" column="60" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -234,8 +229,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/UIButton.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/ShapeDrawDataq.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/DraggableDisplayTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/ShapeDrawData.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/CenterShape.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/ShapeDrawData.java" />
       </list>
     </option>
   </component>
@@ -984,7 +979,7 @@
       <workItem from="1439823375202" duration="32407000" />
       <workItem from="1440081502999" duration="22927000" />
       <workItem from="1441032014308" duration="8102000" />
-      <workItem from="1441140205793" duration="19167000" />
+      <workItem from="1441140205793" duration="21307000" />
     </task>
     <task id="LOCAL-00001" summary="end of 9/1">
       <created>1441144775774</created>
@@ -992,11 +987,17 @@
       <option name="project" value="LOCAL" />
       <updated>1441144775774</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="end of 9/2">
+      <created>1441219812538</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1441219812538</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151397000" />
+    <option name="totallyTimeSpent" value="153537000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1043,7 +1044,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="end of 9/1" />
-    <option name="LAST_COMMIT_MESSAGE" value="end of 9/1" />
+    <MESSAGE value="end of 9/2" />
+    <option name="LAST_COMMIT_MESSAGE" value="end of 9/2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1355,7 +1357,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#paint#0;class#MainClass#0" expanded="false" />
             <element signature="method#sum#0;class#Main#0" expanded="false" />
             <element signature="method#wins#0;class#Main#0" expanded="false" />
@@ -1457,8 +1459,18 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/FrameContentObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="60" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="60" />
+          <caret line="26" column="60" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/CenterShape.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1482,16 +1494,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/ShapeDrawData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ryan/gengine/Version1/display/CenterShape.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38865837">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5643154">
+          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -1,6 +1,7 @@
 package com.ryan.gengine.Version1.display;
 
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * Created by a689638 on 9/2/2015.
@@ -10,7 +11,7 @@ import java.awt.*;
  *         This software is the confidential and proprietary information
  *         of HEB
  */
-public class ShapeDrawData {
+public class ShapeDrawData implements Serializable{
     Paint currentPaint;
     Paint currentEdgePaint;
 
@@ -30,6 +31,8 @@ public class ShapeDrawData {
     boolean drawFill;
     boolean drawOutline;
     double rotation;
+
+    int height;
 
 
 }

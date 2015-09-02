@@ -21,6 +21,7 @@ public class CenterShape extends FrameContentObject {
     }
 
 
+
     private Polygon generateShape(Dimension offset){
         Polygon p = new Polygon();
         for (int i = 0; i < 6; i++)
@@ -36,22 +37,21 @@ public class CenterShape extends FrameContentObject {
     public void draw(Graphics g, Dimension offset) {
         Graphics2D g2 = (Graphics2D) g;
 
-        AffineTransform af = g2.getTransform();
-        if (drawData.rotation !=0){
-            g2.rotate(drawData.rotation);
+        AffineTransform af = new AffineTransform();
+        af.rotate(drawData.rotation);
+        Shape rotatedShape = af.createTransformedShape(shape);
 
-        }
         shape = generateShape(offset);
         if (drawData.drawFill){
             g2.setPaint(drawData.currentPaint);
-            g2.fill(shape);
+            g2.fill(rotatedShape);
         }
         if (drawData.drawOutline){
             g2.setStroke(drawData.mainStroke);
             g2.setPaint(drawData.currentEdgePaint);
-            g2.draw(shape);
+            g2.draw(rotatedShape);
         }
-        g2.setTransform(af);
+
 
 
 
