@@ -15,7 +15,7 @@ public abstract class FrameContentObject{
     Point localPosition = new Point(0,0);
     Dimension bounds;
     Shape shape;
-    public int height;
+    public int height = 0;
 
     FrameContentObject(Point p, Shape s){
         this.shape = s;

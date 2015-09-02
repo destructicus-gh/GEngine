@@ -9,6 +9,7 @@ package com.ryan.gengine.Version1.display;
  *         of HEB
  */
 public interface Draggable {
+    boolean isDragging();
     void dragStart();
     void dragging();
     void dragStop();
