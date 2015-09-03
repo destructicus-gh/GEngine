@@ -62,7 +62,7 @@ public class UIButton extends FrameContentObject implements Clickable
 
 
         g2.setFont(new Font("Calibri", Font.BOLD, 18));
-        drawCenteredString("Click Me", (int) r2d.getWidth(), (int) r2d.getHeight(), g);
+        drawCenteredString(this.name, (int) r2d.getWidth(), (int) r2d.getHeight(), g);
 
     }
 

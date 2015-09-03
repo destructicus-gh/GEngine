@@ -19,16 +19,13 @@ public class CenterShape extends FrameContentObject {
         drawData = shapeDrawData;
         this.sides = sides;
     }
-
-
-
     private Polygon generateShape(Dimension offset){
         Polygon p = new Polygon();
         for (int i = 0; i < 6; i++)
             p.addPoint(
-                    (int) (drawData.currentPoint.x + offset.width + drawData.distanceFromCenter
+                    (int) (drawData.distanceFromCenter
                             * Math.cos(i * 2 * Math.PI / this.sides)),
-                    (int) (drawData.currentPoint.y + offset.height + drawData.distanceFromCenter
+                    (int) (drawData.distanceFromCenter
                             * Math.sin(i * 2 * Math.PI / this.sides)));
         return p;
     }
@@ -39,23 +36,23 @@ public class CenterShape extends FrameContentObject {
 
         AffineTransform af = new AffineTransform();
         af.rotate(drawData.rotation);
-        Shape rotatedShape = af.createTransformedShape(shape);
+        ;
+        shape = af.createTransformedShape(generateShape(offset));
 
-        shape = generateShape(offset);
+
+
+        af = new AffineTransform();
+        af.translate(drawData.currentPoint.x + offset.width, drawData.currentPoint.y + offset.height);
+        shape = af.createTransformedShape(shape);
+
         if (drawData.drawFill){
             g2.setPaint(drawData.currentPaint);
-            g2.fill(rotatedShape);
+            g2.fill(shape);
         }
         if (drawData.drawOutline){
             g2.setStroke(drawData.mainStroke);
             g2.setPaint(drawData.currentEdgePaint);
-            g2.draw(rotatedShape);
+            g2.draw(shape);
         }
-
-
-
-
-
-
     }
 }

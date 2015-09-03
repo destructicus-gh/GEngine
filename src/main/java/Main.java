@@ -1,7 +1,7 @@
 import com.ryan.gengine.Version1.display.CardImages;
 import com.ryan.gengine.Version1.display.CivilWarDisplay;
-import com.ryan.gengine.Version1.display.DraggableDisplayTest;
 import com.ryan.gengine.Version1.display.GridWarDisplay;
+import com.ryan.gengine.Version1.display.RepeatingBackTest;
 import com.ryan.gengine.Version1.impl.StdInInput;
 import com.ryan.gengine.Version1.impl.WarGame;
 
@@ -111,8 +111,11 @@ public class Main {
         //ButtonTest bt = new ButtonTest();
         //war();
 
-        DraggableDisplayTest d = new DraggableDisplayTest("Draggable Test", new Dimension(400, 400));
-        new Thread(d).start();
+        //DraggableDisplayTest d = new DraggableDisplayTest("Draggable Test", new Dimension(400, 400));
+        //new Thread(d).start();
+        RepeatingBackTest repeatingBackTest = new RepeatingBackTest("Repeating Background Test", new Dimension(500, 500));
+        new Thread(repeatingBackTest).start();
+
 
     }
 
