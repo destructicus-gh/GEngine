@@ -13,13 +13,16 @@ import java.awt.geom.AffineTransform;
  */
 public class CenterShape extends FrameContentObject {
     ShapeDrawData drawData;
+    private Polygon p;
     int sides;
 
     public CenterShape(ShapeDrawData shapeDrawData, int sides){
         drawData = shapeDrawData;
         this.sides = sides;
+        p = generateShape();
+
     }
-    private Polygon generateShape(Dimension offset){
+    private Polygon generateShape(){
         Polygon p = new Polygon();
         for (int i = 0; i < 6; i++)
             p.addPoint(
@@ -31,14 +34,25 @@ public class CenterShape extends FrameContentObject {
     }
 
     @Override
+    public void setPlace(Point point) {
+        drawData.currentPoint = point;
+    }
+    @Override
+    public Point getPlace(){
+        return drawData.currentPoint;
+    }
+
+
+
+    @Override
     public void draw(Graphics g, Dimension offset) {
         Graphics2D g2 = (Graphics2D) g;
 
         AffineTransform af = new AffineTransform();
         af.rotate(drawData.rotation);
-        ;
-        shape = af.createTransformedShape(generateShape(offset));
 
+        shape = af.createTransformedShape(this.p);
+        //g.drawRect(10, 10, 20, 20);
 
 
         af = new AffineTransform();

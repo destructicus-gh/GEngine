@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.PriorityQueue;
 
 /**
@@ -23,11 +24,11 @@ public class DraggablePanel extends GamePanel {
     Dimension offset = new Dimension(0, 0);
     Dimension contentSize; //TO-DO: give this a purpose
 
-    java.util.List<FrameContentObject> staticObjects = new ArrayList<>();
-    java.util.List<FrameContentObject> draggableObjects = new ArrayList<>();
+    List<FrameContentObject> staticObjects = new ArrayList<>();
+    List<FrameContentObject> draggableObjects = new ArrayList<>();
 
 
-    public java.util.List<FrameContentObject> backgroundDraggingObjects = new ArrayList<>();
+    public List<FrameContentObject> backgroundDraggingObjects = new ArrayList<>();
 
 
     Point lastDrag;
@@ -62,7 +63,6 @@ public class DraggablePanel extends GamePanel {
     @Override
     public void mouseClicked(MouseEvent e) {
         FrameContentObject f = getClick(e.getPoint());
-
         if (f == null) return;
         if (f instanceof Clickable) {
             ((Clickable) f).click(e.getButton() == MouseEvent.BUTTON1);
@@ -74,6 +74,7 @@ public class DraggablePanel extends GamePanel {
     @Override
     public void mousePressed(MouseEvent e) {
         lastDrag = e.getPoint();
+
         FrameContentObject f = getClick(e.getPoint());
         if (f instanceof Draggable) {
             draggedObject = f;
@@ -91,6 +92,14 @@ public class DraggablePanel extends GamePanel {
     public void mouseReleased(MouseEvent e) {
         if (draggedObject != null) {
             ((Draggable) this.draggedObject).dragStop();
+
+            if (draggedObject instanceof Snappable) {
+                Snappable s = ((Snappable) draggedObject);
+                Point newPlace = s.snapTo();
+                draggedObject.setPlace(newPlace);
+                System.out.println("at location" + s.locateTile());
+
+            }
             draggedObject = null;
         }
         if (draggingField) {
@@ -100,6 +109,7 @@ public class DraggablePanel extends GamePanel {
         if (clickedObject != null) {
             ((Clickable) clickedObject).clickUp();
         }
+
 
     }
 
@@ -119,29 +129,71 @@ public class DraggablePanel extends GamePanel {
 
     }
 
-    FrameContentObject getClick(Point p) {
-        java.util.List<FrameContentObject> objectsHit = new ArrayList<>();
+    List<FrameContentObject> getClicks(Point p) {
+        List<FrameContentObject> objectsHit = new ArrayList<>();
 
         for (FrameContentObject f : staticObjects) {
             if (f.shape.contains(p)) {
                 objectsHit.add(f);
+                System.out.println(f.toString() + ":static");
             }
         }
-        if (!objectsHit.isEmpty()) {
+        for (FrameContentObject f : draggableObjects) {
+            try {
+                if (f.shape.contains(p)) {
+                    objectsHit.add(f);
+                    System.out.println(f.toString() + ":draggable");
+                }
+            } catch (NullPointerException e) {
+                System.out.println(e);
+                System.out.println(f.name + " is broken");
+                System.out.println(f.shape);
+
+            }
+        }
+        for (FrameContentObject f : backgroundDraggingObjects) {
+            if (f.shape.contains(p)) {
+                objectsHit.add(f);
+                System.out.println(f.toString() + ":backgrounddraggable");
+            }
+        }
+        return objectsHit;
+    }
+
+    FrameContentObject getClick(Point p) {
+        List<FrameContentObject> objectsHit = new ArrayList<>();
+
+        for (FrameContentObject f : staticObjects) {
+            if (f.shape.contains(p)) {
+                objectsHit.add(f);
+
+            }
+        }
+        if (!objectsHit.isEmpty()) {  //Blocks the UI, just in case
             return objectsHit.get(0);
         }
 
         for (FrameContentObject f : draggableObjects) {
+            try {
+                if (f.shape.contains(p)) {
+                    objectsHit.add(f);
+
+                }
+            } catch (NullPointerException e) {
+                System.out.println(e);
+                System.out.println(f.name + " is broken");
+                System.out.println(f.shape);
+
+            }
+        }
+        for (FrameContentObject f : backgroundDraggingObjects) {
             if (f.shape.contains(p)) {
                 objectsHit.add(f);
             }
         }
-        Collections.sort(objectsHit, new Comparator<FrameContentObject>() {
-            @Override
-            public int compare(FrameContentObject o1, FrameContentObject o2) {
-                return o1.height - o2.height;
-            }
-        });
+
+        Collections.sort(objectsHit, (o1, o2) ->//HERE
+                (o1.height - o2.height != 0) ? (o2.height - o1.height) : o1.name.compareTo(o2.name));
         return objectsHit.size() == 0 ? null : objectsHit.get(0);
     }
 
@@ -160,7 +212,7 @@ public class DraggablePanel extends GamePanel {
             } else {
                 d.dragStart();
             }
-            f.localPosition = new Point(-1 * (lastDrag.x - dragTo.x) + f.localPosition.x, -1 * (lastDrag.y - dragTo.y) + f.localPosition.y);
+            f.setPlace(new Point(-1 * (lastDrag.x - dragTo.x) + f.getPlace().x, -1 * (lastDrag.y - dragTo.y) + f.getPlace().y));
             this.lastDrag = dragTo;
         }
         reUp();
@@ -169,7 +221,7 @@ public class DraggablePanel extends GamePanel {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        // getClicks(e.getPoint());
     }
 
     @Override
@@ -183,7 +235,8 @@ public class DraggablePanel extends GamePanel {
 
         pq.addAll(this.draggableObjects);
         while (!pq.isEmpty()) {
-            pq.poll().draw(g, this.offset);
+            FrameContentObject f = pq.poll();
+            f.draw(g, this.offset);
         }
         for (FrameContentObject frameContentObject : this.staticObjects) {
             frameContentObject.draw(g, this.offset);

@@ -1,9 +1,10 @@
 import com.ryan.gengine.Version1.display.CardImages;
 import com.ryan.gengine.Version1.display.CivilWarDisplay;
 import com.ryan.gengine.Version1.display.GridWarDisplay;
-import com.ryan.gengine.Version1.display.RepeatingBackTest;
+import com.ryan.gengine.Version1.display.SnappableTest;
 import com.ryan.gengine.Version1.impl.StdInInput;
 import com.ryan.gengine.Version1.impl.WarGame;
+import com.ryan.gengine.Version1.service.GameFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -100,21 +101,19 @@ public class Main {
         inputThread.start();
         game.begin();
     }
-
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public void  runblackjack(){
         /*for (int i = 12; i < 21; i++) {
             int[] results = blackJackHand(i);
             System.out.println("At threshold " + i + ", results are " + results[0] + " to " + results[1] +
                     ", or a " + ((results[0] + 0.0f) / (results[0] + results[1])) + " success rate");
         }
         */
-        //ButtonTest bt = new ButtonTest();
-        //war();
+    }
 
-        //DraggableDisplayTest d = new DraggableDisplayTest("Draggable Test", new Dimension(400, 400));
-        //new Thread(d).start();
-        RepeatingBackTest repeatingBackTest = new RepeatingBackTest("Repeating Background Test", new Dimension(500, 500));
-        new Thread(repeatingBackTest).start();
+    public static void main(String[] args) throws IOException, InterruptedException {
+
+        GameFrame test = new SnappableTest("Snappable Test", new Dimension(500, 500));
+        new Thread(test).start();
 
 
     }

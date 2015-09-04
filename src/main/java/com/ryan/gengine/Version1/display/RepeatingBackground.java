@@ -1,5 +1,7 @@
 package com.ryan.gengine.Version1.display;
 
+import com.ryan.gengine.Version1.service.Clickable;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,7 +18,7 @@ import java.util.List;
  *         This software is the confidential and proprietary information
  *         of HEB
  */
-public class RepeatingBackground extends FrameContentObject {
+public class RepeatingBackground extends FrameContentObject implements Clickable{
     Dimension tileSize;
     Dimension windowSize;
     List<FrameContentObject> objects = new ArrayList<>();
@@ -25,11 +27,12 @@ public class RepeatingBackground extends FrameContentObject {
     protected RepeatingBackground(Dimension windowSize, Dimension tileSize){
         this.tileSize = tileSize;
         this.windowSize = windowSize;
+        this.height = Integer.MIN_VALUE;
+        this.shape = new Rectangle(windowSize);
     }
 
     public RepeatingBackground(Dimension windowSize, Dimension tileSize, List<FrameContentObject> objects) {
-        this.tileSize = tileSize;
-        this.windowSize = windowSize;
+        this(windowSize, tileSize);
         this.objects.addAll(objects);
         this.bakedTile = new BufferedImage(tileSize.width, tileSize.height, BufferedImage.TYPE_INT_ARGB);
 
@@ -63,7 +66,6 @@ public class RepeatingBackground extends FrameContentObject {
         for (FrameContentObject f : objects) {
             f.draw(g, nope);
         }
-        System.out.println("rebaking");
 
 
 
@@ -81,12 +83,31 @@ public class RepeatingBackground extends FrameContentObject {
 
     @Override
     public void draw(Graphics g, Dimension offset) {
+
         Dimension localOffset = new Dimension(offset.width%tileSize.width,offset.height%tileSize.height );
         for (int x = -1; x < tileSize.width; x++) {
             for (int y = -1; y < tileSize.height; y++) {
                 g.drawImage(bakedTile, x*tileSize.width  + localOffset.width, y*tileSize.height + localOffset.height, null);
             }
         }
+        g.fillOval(offset.width-20, offset.height-20, 40, 40);
 
     }
+
+    @Override
+    public void click(boolean leftClick) {
+
+    }
+
+    @Override
+    public void clickDown() {
+
+    }
+
+    @Override
+    public void clickUp() {
+
+    }
+
+
 }

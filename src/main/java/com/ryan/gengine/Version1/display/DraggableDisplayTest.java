@@ -41,8 +41,8 @@ class HexagonPiece extends FrameContentObject implements Draggable, Clickable {
         Polygon p = new Polygon();
         for (int i = 0; i < 6; i++)
             p.addPoint(
-                    (int) (localPosition.x + offset.width + sizeNum * Math.cos(i * 2 * Math.PI / 6)),
-                    (int) (localPosition.y + offset.height + sizeNum * Math.sin(i * 2 * Math.PI / 6)));
+                    (int) (getPlace().x + offset.width + sizeNum * Math.cos(i * 2 * Math.PI / 6)),
+                    (int) (getPlace().y + offset.height + sizeNum * Math.sin(i * 2 * Math.PI / 6)));
         shape = p;
         g2.setStroke(new BasicStroke(4.0f));
         g2.fill(shape);
@@ -105,9 +105,9 @@ public class DraggableDisplayTest extends GameFrame implements GameOutput {
         for (int j = 0; j < 5; j++) {
             for (int i = 0; i < 5; i++) {
                 HexagonPiece h = new HexagonPiece();
-                h.localPosition = new Point(
+                h.setPlace( new Point(
                         (i * 3 * HexagonPiece.sizeNum) + (int) (mult * HexagonPiece.sizeNum),
-                        j * (int) (HexagonPiece.sizeNum * Math.cos(30 * 0.017)));
+                        j * (int) (HexagonPiece.sizeNum * Math.cos(30 * 0.017))));
                 h.name = "" + j + " " + i;
                 this.draggablePanel.addDraggableObject(h);
             }

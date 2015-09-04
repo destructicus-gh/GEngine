@@ -25,7 +25,7 @@ public class UIButton extends FrameContentObject implements Clickable
     public UIButton(Point place, Dimension size, Dimension arcSize) {
         super();
         height = Integer.MAX_VALUE;
-        localPosition = place;
+        setPlace(place);
         shape = new RoundRectangle2D.Float(place.x, place.y, size.width, size.height, arcSize.width, arcSize.height);
 
     }

@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public abstract class FrameContentObject{
     String name;
-    Point localPosition = new Point(0,0);
+    private Point localPosition = new Point(0,0);
     Dimension bounds;
     Shape shape;
     public int height = 0;
@@ -25,4 +25,20 @@ public abstract class FrameContentObject{
     }
 
     public abstract void draw(Graphics g, Dimension offset);
+    public void setPlace(Point point){
+        localPosition = point;
+    }
+
+    public Point getPlace(){
+        return localPosition;
+    }
+
+    @Override
+    public String toString() {
+        return "FrameContentObject{" +
+                "name='" + name + '\'' +
+                ", localPosition=" + localPosition +
+                ", height=" + height +
+                '}';
+    }
 }

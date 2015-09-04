@@ -18,11 +18,8 @@ public class RepeatingSquareBackground extends RepeatingBackground {
         ShapeDrawData shapeDrawData = new ShapeDrawData();
         shapeDrawData.size = tileSize;
         shapeDrawData.setBothPoints(new Point(tileSize.width / 2, tileSize.height / 2));
-        System.out.println(new Point(tileSize.width / 2, tileSize.height / 2));
         shapeDrawData.rotation = Math.toRadians(45);
         shapeDrawData.distanceFromCenter = (int) Math.sqrt((tileSize.width*tileSize.width)*2)/2;
-        System.out.println(shapeDrawData.distanceFromCenter);
-        //shapeDrawData.distanceFromCenter = 40;
         objects.add(new CenterSquare(shapeDrawData));
         rebakeTile();
     }
@@ -33,8 +30,5 @@ public class RepeatingSquareBackground extends RepeatingBackground {
     }
 
 
-    public void reeee(){
-        ((CenterSquare)objects.get(0)).drawData.mainPaint = Color.red;
-    }
 
 }
