@@ -14,14 +14,14 @@ public abstract class FrameContentObject{
     String name;
     private Point localPosition = new Point(0,0);
     Dimension bounds;
-    Shape shape;
+    protected Shape shape;
     public int height = 0;
 
-    FrameContentObject(Point p, Shape s){
+    public FrameContentObject(Point p, Shape s){
         this.shape = s;
         localPosition = p;
     }
-    FrameContentObject(){
+    public FrameContentObject(){
     }
 
     public abstract void draw(Graphics g, Dimension offset);

@@ -18,6 +18,7 @@ public class UIButton extends FrameContentObject implements Clickable
 {
     Paint paint = Color.white;
     Paint altPaint = Color.white.darker();
+    Paint textPaint = Color.black;
     Stroke stroke = new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND );
 
     boolean down;
@@ -57,7 +58,7 @@ public class UIButton extends FrameContentObject implements Clickable
 
         RoundRectangle2D r2d = (RoundRectangle2D) shape;
         g2.fill(r2d);
-        g2.setColor(Color.BLACK);
+        g2.setPaint(textPaint);
         g2.draw(r2d);
 
 

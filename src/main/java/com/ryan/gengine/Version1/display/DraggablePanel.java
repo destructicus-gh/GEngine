@@ -40,12 +40,12 @@ public class DraggablePanel extends GamePanel {
     Draggable draggableElement;
 
 
-    DraggablePanel(Dimension contentSize) {
+    public DraggablePanel(Dimension contentSize) {
         this.contentSize = contentSize;
 
     }
 
-    DraggablePanel(Dimension contentSize, Dimension offset) {
+    public DraggablePanel(Dimension contentSize, Dimension offset) {
         this.contentSize = contentSize;
         this.offset = offset;
 
@@ -148,7 +148,6 @@ public class DraggablePanel extends GamePanel {
                 System.out.println(e);
                 System.out.println(f.name + " is broken");
                 System.out.println(f.shape);
-
             }
         }
         for (FrameContentObject f : backgroundDraggingObjects) {

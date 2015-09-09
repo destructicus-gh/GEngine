@@ -1,13 +1,16 @@
 import com.ryan.gengine.Version1.display.CardImages;
 import com.ryan.gengine.Version1.display.CivilWarDisplay;
 import com.ryan.gengine.Version1.display.GridWarDisplay;
-import com.ryan.gengine.Version1.display.SnappableTest;
 import com.ryan.gengine.Version1.impl.StdInInput;
 import com.ryan.gengine.Version1.impl.WarGame;
-import com.ryan.gengine.Version1.service.GameFrame;
+import com.ryan.gengine.Version1.util.SVGTools;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -112,10 +115,51 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        GameFrame test = new SnappableTest("Snappable Test", new Dimension(500, 500));
-        new Thread(test).start();
+        //GameFrame test = new SnappableTest("Snappable Test", new Dimension(500, 500));
+        //new Thread(test).start();
+
+        SVGTools.InternalSVGData data = SVGTools.fromFile(new File("C:\\Users\\a689638\\Downloads\\WindowsIcons-master\\WindowsIcons-master\\WindowsPhone\\svg\\appbar.cards.heart.svg"));
+        BufferedImage bf = new BufferedImage(data.rect.width, data.rect.height, BufferedImage.TYPE_INT_ARGB);
+        RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        Graphics2D g = (Graphics2D) bf.getGraphics();
+        g.setRenderingHints(rh);
+        AffineTransform affineTransform = new AffineTransform();
+        double zoom = 1.5;
+
+        affineTransform.translate((data.rect.width/2)* (1-zoom),
+                (data.rect.height/2)* (1-zoom));
+        affineTransform.scale(zoom, zoom);
+        Color c = new Color(212, 91, 85, 253);
+        Color c2 = new Color(118, 0, 0, 255);
+        data.colors.set(0, c);
+
+        for(int i = 0; i< data.paths.size();i++){
+            g.setColor(data.colors.get(i));
+            data.paths.get(i).transform(affineTransform);
+            g.fill(data.paths.get(i));
+            g.setStroke(new BasicStroke(2.0f));
+            g.setColor(c2);
+            g.draw(data.paths.get(i));
+        }
+        g.setFont(new Font("Veranda", Font.BOLD, 28));
+        //g.setColor(new Color(255, 255, 255, 255));
+        drawCenteredString("1", data.rect.width, data.rect.height, g);
+
+        ImageIO.write(bf, "png", new File("ThisWorks.png"));
+        GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        Font[] fonts = e.getAllFonts(); // Get the fonts
+        for (Font f : fonts) {
+            //System.out.println(f.getFontName());
+        }
 
 
+
+    }
+    public static void drawCenteredString(String s, int w, int h, Graphics g) {
+        FontMetrics fm = g.getFontMetrics();
+        int x = (w - fm.stringWidth(s)) / 2;
+        int y = (fm.getAscent() + (h - (fm.getAscent() + fm.getDescent())) / 2);
+        g.drawString(s, x, y);
     }
 
 
