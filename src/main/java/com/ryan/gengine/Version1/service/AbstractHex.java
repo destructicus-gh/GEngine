@@ -15,4 +15,7 @@ public abstract class AbstractHex{
     public void setPoint(Point point){
         this.thisPoint = point;
     }
+    public String toString(){
+        return "Hex: "+this.hashCode()+" at "+thisPoint.toString();
+    }
 }

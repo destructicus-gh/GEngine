@@ -17,8 +17,8 @@ import java.util.Set;
  */
 
 
-public abstract class Game {
-    Set<GameOutput> outputs = new HashSet<GameOutput>();
+public abstract class Game{
+    Set<GameOutput> outputs = new HashSet<>();
     List<GameInput> inputs = new ArrayList<>();
     private boolean gameEnds = false;
 

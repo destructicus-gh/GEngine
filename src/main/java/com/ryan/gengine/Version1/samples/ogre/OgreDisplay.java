@@ -38,6 +38,8 @@ public class OgreDisplay extends GameFrame implements GameOutput, GameInput{
         float mult = 0;
         for (int j = 0; j < grid.getDimension().height; j++) {
             for (int i = 0; i < grid.getDimension().width; i++) {
+                OgreHex oh = grid.getValueAt(new Point(i, j));
+                assert oh != null:"No OgreHex at {"+i+", "+j+"}";
                 OgreDisplayHex h = new OgreDisplayHex(grid.getValueAt(new Point(i, j)));
                 h.setPlace( new Point(
                         (i * 3 * OgreDisplayHex.sizeNum) + (int) (mult * OgreDisplayHex.sizeNum),

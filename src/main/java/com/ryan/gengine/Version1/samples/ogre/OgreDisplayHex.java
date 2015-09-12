@@ -23,8 +23,11 @@ public class OgreDisplayHex extends FrameContentObject implements Clickable {
     static int sizeNum = 20;
 
     public OgreDisplayHex(OgreHex data) {
+        assert data != null:"OgreDisplayHex given a null OgreHex";
         this.data = data;
+        System.out.println("data = " + data);
         this.color = data.cratered ? crateredColor : clearColor;
+
 
     }
 

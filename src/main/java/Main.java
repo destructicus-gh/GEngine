@@ -1,8 +1,12 @@
 import com.ryan.gengine.Version1.display.CardImages;
 import com.ryan.gengine.Version1.display.CivilWarDisplay;
 import com.ryan.gengine.Version1.display.GridWarDisplay;
+import com.ryan.gengine.Version1.impl.HexGrid;
 import com.ryan.gengine.Version1.impl.StdInInput;
 import com.ryan.gengine.Version1.impl.WarGame;
+import com.ryan.gengine.Version1.samples.ogre.OgreDisplay;
+import com.ryan.gengine.Version1.samples.ogre.OgreHex;
+import com.ryan.gengine.Version1.samples.ogre.OgreLogic;
 import com.ryan.gengine.Version1.util.SVGTools;
 
 import javax.imageio.ImageIO;
@@ -15,7 +19,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EmptyStackException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 
 class MainClass extends JPanel {
@@ -104,7 +110,8 @@ public class Main {
         inputThread.start();
         game.begin();
     }
-    public void  runblackjack(){
+
+    public void runblackjack() {
         /*for (int i = 12; i < 21; i++) {
             int[] results = blackJackHand(i);
             System.out.println("At threshold " + i + ", results are " + results[0] + " to " + results[1] +
@@ -113,10 +120,33 @@ public class Main {
         */
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) {
 
-        //GameFrame test = new SnappableTest("Snappable Test", new Dimension(500, 500));
-        //new Thread(test).start();
+
+        Map<Point, String> maptest = new HashMap<>();
+        maptest.put(new Point(1, 1), "ssda");
+        //System.out.println(maptest.get(new Point(1, 1-2)));
+
+        //if (true) return;
+
+        Dimension frameDim = new Dimension(10, 10);
+        Dimension hexDim = new Dimension(15, 21);
+        HexGrid<OgreHex> hexdata = new HexGrid<>(hexDim);
+        System.out.println(hexdata.getAt(new Point(1, 1)));
+
+
+        OgreLogic gameLogic = new OgreLogic(null, hexdata);
+        OgreDisplay display = new OgreDisplay("Ogre Display", frameDim, hexdata);
+        gameLogic.start();
+
+        Thread s = new Thread(display);
+
+        //s.start();
+
+
+    }
+
+    public static void oneofhearts() throws IOException, InterruptedException {
 
         SVGTools.InternalSVGData data = SVGTools.fromFile(new File("C:\\Users\\a689638\\Downloads\\WindowsIcons-master\\WindowsIcons-master\\WindowsPhone\\svg\\appbar.cards.heart.svg"));
         BufferedImage bf = new BufferedImage(data.rect.width, data.rect.height, BufferedImage.TYPE_INT_ARGB);
@@ -126,14 +156,14 @@ public class Main {
         AffineTransform affineTransform = new AffineTransform();
         double zoom = 1.5;
 
-        affineTransform.translate((data.rect.width/2)* (1-zoom),
-                (data.rect.height/2)* (1-zoom));
+        affineTransform.translate((data.rect.width / 2) * (1 - zoom),
+                (data.rect.height / 2) * (1 - zoom));
         affineTransform.scale(zoom, zoom);
         Color c = new Color(212, 91, 85, 253);
         Color c2 = new Color(118, 0, 0, 255);
         data.colors.set(0, c);
 
-        for(int i = 0; i< data.paths.size();i++){
+        for (int i = 0; i < data.paths.size(); i++) {
             g.setColor(data.colors.get(i));
             data.paths.get(i).transform(affineTransform);
             g.fill(data.paths.get(i));
@@ -151,10 +181,8 @@ public class Main {
         for (Font f : fonts) {
             //System.out.println(f.getFontName());
         }
-
-
-
     }
+
     public static void drawCenteredString(String s, int w, int h, Graphics g) {
         FontMetrics fm = g.getFontMetrics();
         int x = (w - fm.stringWidth(s)) / 2;

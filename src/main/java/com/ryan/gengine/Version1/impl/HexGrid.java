@@ -15,6 +15,51 @@ import java.util.Map;
  *         of HEB
  */
 public class HexGrid<E extends AbstractHex> { //uses odd-q indexing
+    private class FinalPoint extends Point{
+        private int x;
+        private int y;
+        public FinalPoint(int x, int y){
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null)
+                return false;
+
+           //System.out.println(o instanceof Point);
+            if(!(o instanceof Point)) return false;
+
+            FinalPoint f;
+            if (o.getClass() == FinalPoint.class){
+                f = (FinalPoint) o;
+            }
+            else{
+                Point p = (Point) o;
+                f = new FinalPoint(p.x, p.y);
+            }
+            FinalPoint that = f;
+
+            //System.out.println(this.x+" "+that.x);
+            //System.out.println(this.y+" "+that.y);
+            if (x != that.x) return false;
+            return y == that.y;
+
+        }
+
+        @Override
+        public int hashCode() {
+            int result = super.hashCode();
+            result = 31 * result + x;
+            result = 31 * result + y;
+            return result;
+        }
+
+    }
+
+
     public static final String[] directionNames = new String[]{"up", "down", "upleft", "upright", "downleft", "downright"};
     private Dimension dimension;
 
@@ -39,12 +84,13 @@ public class HexGrid<E extends AbstractHex> { //uses odd-q indexing
 
     public HexGrid(Dimension d){
         this.dimension = d;
-        root = new HexPiece<>(new Point(0,0));
+
         for (int x = 0;x< d.width;x++){
             for (int y = 0;y< d.height;y++){
-                pieces.put(new Point(x, y), new HexPiece<>(new Point(x, y)));
+                pieces.put(new Point(x, y), new HexPiece<>(new FinalPoint(x, y)));
             }
         }
+        root = getAt(new Point (0,0));
         for (Point place: pieces.keySet()){
             HexPiece<E> piece = pieces.get(place);
             if (place.x%2 == 1){ //x is odd
@@ -62,19 +108,24 @@ public class HexGrid<E extends AbstractHex> { //uses odd-q indexing
             piece.directions.put("up", getAt(new Point(place.x, place.y-1)));
             piece.directions.put("down", getAt(new Point(place.x, place.y+1)));
         }
+        for(Point p: pieces.keySet()){
+            //System.out.println(p.toString() + pieces.get(p).toString());
+        }
+
+
     }
     public HexPiece<E> getAt(Point p){
-        if (pieces.containsKey(p)){
-            return (pieces.get(p));
-        }
-        return null;
+        return (pieces.get(p));
+
 
     }
     public E getValueAt(Point p){
-        if (pieces.containsKey(p)) {
-            return (pieces.get(p)).value;
-        }
-        return null;
+        return (pieces.get(p)).value;
+
+    }
+    public FinalPoint fromPoint(Point p){
+        //System.out.println("n"+p.toString());
+        return new FinalPoint(p.x, p.y);
     }
 
     public Dimension getDimension() {

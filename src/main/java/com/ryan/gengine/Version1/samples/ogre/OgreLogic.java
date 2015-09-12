@@ -18,7 +18,7 @@ import java.util.concurrent.TransferQueue;
  *         This software is the confidential and proprietary information
  *         of HEB
  */
-public class OgreLogic extends Game {
+public class OgreLogic extends Game{
     HexGrid<OgreHex> field;// = new HexGrid<>(new Dimension(15, 21));
     List<Unit> units = new ArrayList<>();
     Ogre ogre;
